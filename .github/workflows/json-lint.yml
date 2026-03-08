@@ -1,0 +1,33 @@
+name: Validate JSON files
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  json-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Validate JSON files
+        run: |
+          set -e
+          files=$(git ls-files '*.json' || true)
+          if [ -z "$files" ]; then
+            echo "No JSON files to validate."
+            exit 0
+          fi
+          for f in $files; do
+            echo "Validating $f"
+            jq -e . "$f" >/dev/null || (echo "Invalid JSON: $f" && exit 1)
+          done
+      - name: Set up dotnet user-secrets
+        run: |
+          cd services/src/ParcelTracking.API
+          dotnet user-secrets init
+          dotnet user-secrets set "CosmosDb:ConnectionString" "AccountEndpoint=https://localhost:8081/;AccountKey=REDACTED"

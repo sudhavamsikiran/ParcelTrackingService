@@ -1,6 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="2.13.2" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.57.1" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="4.14.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.3" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ParcelTracking.Application\ParcelTracking.Application.csproj" />
   </ItemGroup>
 
