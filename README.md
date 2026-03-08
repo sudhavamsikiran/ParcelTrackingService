@@ -5,7 +5,7 @@ Author: Sudhavamsikiran Damojipurapu
 This document contains the **complete architecture specification** for the Parcel Tracking System including advanced production diagrams used in enterprise logistics systems.
 Github repos
 front- end : <li>[https://github.com/sudhavamsikiran/parcel-tracking-ui](https://github.com/sudhavamsikiran/parcel-tracking-ui)</li>
-Back end : <li>[https://github.com/sudhavamsikiran/parcel-tracking-ui](https://github.com/sudhavamsikiran/ParcelTrackingService)</li>
+Back end : <li>[https://github.com/sudhavamsikiran/ParcelTrackingService](https://github.com/sudhavamsikiran/ParcelTrackingService)</li>
 ---
 
 # 1. Introduction
