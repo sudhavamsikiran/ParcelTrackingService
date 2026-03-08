@@ -27,7 +27,7 @@ namespace ParcelTracking.Infrastructure.Repositories
 
                 return response.Resource;
             }
-            catch(CosmosException ex)
+            catch(CosmosException ex) when (ex.StatusCode== System.Net.HttpStatusCode.NotFound)
             {
                 return null;
             }
@@ -35,12 +35,16 @@ namespace ParcelTracking.Infrastructure.Repositories
 
         public async Task CreateAsync(Parcel parcel)
         {
-            parcel.Id = parcel.TrackingId;
+            if(string.IsNullOrEmpty(parcel.Id))
+               parcel.Id = parcel.TrackingId;
+
             await _container.CreateItemAsync(parcel, new PartitionKey(parcel.TrackingId));
         }
 
         public async Task UpdateAsync(Parcel parcel)
         {
+            if (string.IsNullOrEmpty(parcel.Id))
+                parcel.Id = parcel.TrackingId;
             await _container.UpsertItemAsync(parcel, new PartitionKey(parcel.TrackingId));
         }
     }
